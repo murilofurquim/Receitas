@@ -22,8 +22,20 @@ DatabaseInit::DatabaseInit()
     {
         meuDebug("criando tabela ingrediente");
 
+        auto qry = db.exec("CREATE TABLE `receita` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"
+                           ", `descricao` TEXT "
+                           ", `modo_preparo` TEXT"
+                           ")"
+                           );
 
-        auto qry = db.exec("CREATE TABLE `ingrediente` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `descricao` TEXT )");
+        qry = db.exec("CREATE TABLE ingrediente ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"
+                      ", descricao TEXT "
+                      ", id_receita integer"
+                      ", id_sub_receita integer"
+                      ", FOREIGN KEY(id_receita) REFERENCES receita (id)"
+                      ", FOREIGN KEY(id_sub_receita) REFERENCES receita (id)"
+                      ")");
+
     }
 
     db.close();

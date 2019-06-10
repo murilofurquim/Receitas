@@ -28,21 +28,27 @@ SOURCES += \
         databaseinit.cpp \
         ingrediente.cpp \
         listaingredientes.cpp \
+        listareceitas.cpp \
         main.cpp \
         mainwindow.cpp \
+        receita.cpp \
         utils.cpp
 
 HEADERS += \
         databaseinit.h \
         ingrediente.h \
         listaingredientes.h \
+        listareceitas.h \
         mainwindow.h \
+        receita.h \
         utils.h
 
 FORMS += \
         ingrediente.ui \
         listaingredientes.ui \
-        mainwindow.ui
+        listareceitas.ui \
+        mainwindow.ui \
+        receita.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

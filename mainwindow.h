@@ -18,6 +18,8 @@ public:
 private slots:
     void on_actionIngredientes_triggered();
 
+    void on_actionReceitas_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
