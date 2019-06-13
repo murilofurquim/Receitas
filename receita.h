@@ -13,6 +13,7 @@ class Receita : public QDialog
 
 public:
     explicit Receita(QWidget *parent = nullptr);
+    explicit Receita(QWidget *parent, int id);
     ~Receita();
 
 private slots:
@@ -20,6 +21,8 @@ private slots:
 
 private:
     Ui::Receita *ui;
+    int id;
+    void CarregarReceita(int id_receita);
 };
 
 #endif // RECEITA_H

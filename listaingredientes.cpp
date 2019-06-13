@@ -46,3 +46,4 @@ void ListaIngredientes::handleNew()
     model->query().clear();
     model->setQuery(queryStr, QSqlDatabase::database("default"));
 }
+

@@ -4,6 +4,7 @@
 #include "receita.h"
 #include <QPushButton>
 #include <QSqlQuery>
+#include <QSqlRecord>
 
 ListaReceitas::ListaReceitas(QWidget *parent) :
     QDialog(parent),
@@ -25,7 +26,12 @@ ListaReceitas::ListaReceitas(QWidget *parent) :
 
     connect(btnNovo, &QPushButton::released, this, &ListaReceitas::handleNew);
 
+    QPushButton *btnVisualizar = new QPushButton("Visualizar");
+    connect(btnVisualizar, &QPushButton::released, this, &ListaReceitas::handleVisualizar);
+
     ui->buttonBox->addButton(btnNovo, QDialogButtonBox::ApplyRole);
+    ui->buttonBox->addButton(btnVisualizar, QDialogButtonBox::ApplyRole);
+
 }
 
 ListaReceitas::~ListaReceitas()
@@ -44,4 +50,17 @@ void ListaReceitas::handleNew()
     model->clear();
     model->query().clear();
     model->setQuery(queryStr, QSqlDatabase::database("default"));
+}
+
+void ListaReceitas::handleVisualizar()
+{
+    QItemSelectionModel *select = ui->tableView->selectionModel();
+    auto row = ui->tableView->selectionModel()->currentIndex().row();
+
+
+    auto dado = model->record(row).value(0);
+    meuDebug("indice:" + dado.toString());
+
+    Receita rec(this, dado.toInt());
+    rec.exec();
 }

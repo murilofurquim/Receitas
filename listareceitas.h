@@ -22,6 +22,7 @@ private:
 
 private slots:
     void handleNew();
+    void handleVisualizar();
 };
 
 #endif // LISTARECEITAS_H
