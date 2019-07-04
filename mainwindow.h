@@ -20,6 +20,8 @@ private slots:
 
     void on_actionReceitas_triggered();
 
+    void on_actionReceita_Novo_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

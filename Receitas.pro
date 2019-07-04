@@ -32,6 +32,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         receita.cpp \
+        telareceita.cpp \
         utils.cpp
 
 HEADERS += \
@@ -41,6 +42,7 @@ HEADERS += \
         listareceitas.h \
         mainwindow.h \
         receita.h \
+        telareceita.h \
         utils.h
 
 FORMS += \
@@ -48,7 +50,8 @@ FORMS += \
         listaingredientes.ui \
         listareceitas.ui \
         mainwindow.ui \
-        receita.ui
+        receita.ui \
+        telareceita.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

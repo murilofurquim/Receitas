@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "listaingredientes.h"
 #include "listareceitas.h"
+#include "telareceita.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,4 +26,11 @@ void MainWindow::on_actionReceitas_triggered()
 {
     ListaReceitas *lista = new ListaReceitas(this);
     lista->show();
+}
+
+void MainWindow::on_actionReceita_Novo_triggered()
+{
+    TelaReceita * receita = new TelaReceita(this);
+    receita->setAttribute( Qt::WA_DeleteOnClose );
+    receita->show();
 }

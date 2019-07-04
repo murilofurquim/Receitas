@@ -29,6 +29,7 @@
     </property>
     <addaction name="actionIngredientes"/>
     <addaction name="actionReceitas"/>
+    <addaction name="actionReceita_Novo"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -49,6 +50,11 @@
   <action name="actionReceitas">
    <property name="text">
     <string>Receitas</string>
+   </property>
+  </action>
+  <action name="actionReceita_Novo">
+   <property name="text">
+    <string>Receita Novo</string>
    </property>
   </action>
  </widget>
