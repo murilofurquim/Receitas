@@ -13,6 +13,7 @@ class Ingrediente : public QDialog
 
 public:
     explicit Ingrediente(QWidget *parent = nullptr);
+    explicit Ingrediente(QWidget *parent, int id);
     ~Ingrediente();
 
 private slots:
@@ -20,6 +21,8 @@ private slots:
 
 private:
     Ui::Ingrediente *ui;
+    int id;
+    void carregar(int id_ingrediente);
 };
 
 #endif // INGREDIENTE_H
