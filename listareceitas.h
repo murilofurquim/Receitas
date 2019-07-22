@@ -16,9 +16,12 @@ public:
     explicit ListaReceitas(QWidget *parent = nullptr);
     ~ListaReceitas();
 
+    void refreshGrid();
+
 private:
     Ui::ListaReceitas *ui;
     QSqlQueryModel *model;
+
 
 private slots:
     void handleNew();

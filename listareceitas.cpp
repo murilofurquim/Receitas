@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include "telareceita.h"
 
 ListaReceitas::ListaReceitas(QWidget *parent) :
     QDialog(parent),
@@ -39,17 +40,25 @@ ListaReceitas::~ListaReceitas()
     delete ui;
 }
 
-void ListaReceitas::handleNew()
+void ListaReceitas::refreshGrid()
 {
-    meuDebug("ListaReceitas::handleNew");
-
-    Receita rec(this);
-    rec.exec();
-    meuDebug("refresh query");
     QString queryStr = model->query().executedQuery();
     model->clear();
     model->query().clear();
     model->setQuery(queryStr, QSqlDatabase::database("default"));
+}
+
+void ListaReceitas::handleNew()
+{
+    meuDebug("ListaReceitas::handleNew");
+
+    TelaReceita *rec = new TelaReceita(this, 0);
+
+    connect(rec, &TelaReceita::registroAlterado, this, [=](){refreshGrid();});
+
+    rec->show();
+    meuDebug("refresh query");
+//    refreshGrid();
 }
 
 void ListaReceitas::handleVisualizar()
@@ -57,10 +66,13 @@ void ListaReceitas::handleVisualizar()
     QItemSelectionModel *select = ui->tableView->selectionModel();
     auto row = ui->tableView->selectionModel()->currentIndex().row();
 
-
     auto dado = model->record(row).value(0);
     meuDebug("indice:" + dado.toString());
 
-    Receita rec(this, dado.toInt());
-    rec.exec();
+//    Receita rec(this, dado.toInt());
+//    rec.exec();
+    TelaReceita *rec = new TelaReceita(this, dado.toInt());
+
+    rec->show();
+    refreshGrid();
 }

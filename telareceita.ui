@@ -50,7 +50,7 @@
      <string>Modo de Preparo</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="edtModoPreparo">
     <property name="geometry">
      <rect>
       <x>10</x>
