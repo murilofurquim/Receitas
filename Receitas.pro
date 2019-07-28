@@ -32,6 +32,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         receita.cpp \
+        telaingredientereceita.cpp \
         telareceita.cpp \
         utils.cpp
 
@@ -42,6 +43,7 @@ HEADERS += \
         listareceitas.h \
         mainwindow.h \
         receita.h \
+        telaingredientereceita.h \
         telareceita.h \
         utils.h
 
@@ -51,6 +53,7 @@ FORMS += \
         listareceitas.ui \
         mainwindow.ui \
         receita.ui \
+        telaingredientereceita.ui \
         telareceita.ui
 
 # Default rules for deployment.

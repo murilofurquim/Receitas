@@ -5,6 +5,8 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
+#include <QtSql/QSqlRelation>
+#include "telaingredientereceita.h"
 
 TelaReceita::TelaReceita(QWidget *parent) :
     QMainWindow(parent),
@@ -13,6 +15,24 @@ TelaReceita::TelaReceita(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+    QSqlDatabase db = QSqlDatabase::database("default");
+
+    tableModel = new QSqlRelationalTableModel(this, db);
+
+    tableModel->setTable("receita_ingrediente");
+    tableModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+    auto i = tableModel->fieldIndex("id_ingrediente");
+    qDebug() << "indice da coluna id_ingrediente: " << i;
+    tableModel->setRelation(i, QSqlRelation("ingrediente", "id", "descricao"));
+
+    ui->tableView->setModel(tableModel);
+    ui->tableView->setItemDelegate(new QSqlRelationalDelegate(ui->tableView));
+
+    tableModel->setHeaderData(0, Qt::Horizontal, tr("id"));
+    tableModel->setHeaderData(1, Qt::Horizontal, tr("receita"));
+    tableModel->setHeaderData(2, Qt::Horizontal, tr("ingrediente"));
+    tableModel->setHeaderData(3, Qt::Horizontal, tr("id"));
 }
 
 TelaReceita::TelaReceita(QWidget *parent, int id): TelaReceita(parent)
@@ -56,6 +76,9 @@ void TelaReceita::CarregarReceita()
 
         ui->edtDescricao->setText(qry.value("descricao").toString());
         ui->edtModoPreparo->setPlainText(qry.value("modo_preparo").toString());
+
+        tableModel->setFilter("id = " + QString::number(id));
+        tableModel->select();
     }
 
 }
@@ -108,4 +131,24 @@ void TelaReceita::salvarReceita()
 void TelaReceita::on_actionSalvar_triggered()
 {
     salvarReceita();
+}
+
+void TelaReceita::on_pushButton_clicked()
+{
+    tableModel->insertRow(tableModel->rowCount());
+}
+
+void TelaReceita::on_btnIncluir_clicked()
+{
+    TelaIngredienteReceita *receita = new TelaIngredienteReceita(this);
+
+    connect(receita, &TelaIngredienteReceita::aceitou, this, &TelaReceita::on_aceitou);
+    receita->show();
+}
+
+void TelaReceita::on_aceitou()
+{
+    TelaIngredienteReceita *rec = qobject_cast<TelaIngredienteReceita*>(sender());
+
+    qDebug() << rec->unidade() << " " << rec->id_ingreidente() << " " << rec->quantidade();
 }

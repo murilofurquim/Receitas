@@ -2,6 +2,7 @@
 #define TELARECEITA_H
 
 #include <QMainWindow>
+#include <QtSql>
 
 namespace Ui {
 class TelaReceita;
@@ -27,8 +28,16 @@ signals:
 private slots:
     void on_actionSalvar_triggered();
 
+    void on_pushButton_clicked();
+
+    void on_btnIncluir_clicked();
+
+    void on_aceitou();
+
 private:
     Ui::TelaReceita *ui;
+    QSqlRelationalTableModel *tableModel;
+
     int id;
     void salvarReceita();
 };

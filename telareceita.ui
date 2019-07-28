@@ -60,6 +60,29 @@
      </rect>
     </property>
    </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>280</y>
+      <width>441</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnIncluir">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Incluir</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -87,6 +110,11 @@
   <action name="actionSalvar">
    <property name="text">
     <string>Salvar</string>
+   </property>
+  </action>
+  <action name="actionNovo_Ingrediente">
+   <property name="text">
+    <string>Novo Ingrediente</string>
    </property>
   </action>
  </widget>
